@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class enemyController : MonoBehaviour {
 
-    public Material[] materials;//Allows input of material colors in a set size of array;
-    public Renderer Rend; //What are we rendering? Input object(Sphere,Cylinder,...) to render.
+    //public Material[] materials;//Allows input of material colors in a set size of array;
+    private Renderer Rend; //What are we rendering? Input object(Sphere,Cylinder,...) to render.
 
     private int index = 1;//Initialize at 1, otherwise you have to hit the object twice to change colors at first.
 
@@ -18,8 +18,18 @@ public class enemyController : MonoBehaviour {
 
 
     void OnTriggerEnter(Collider c) {
-		print("Score!");
 
+        // if the bullet is the same color, we've scored!
+        if (c.GetComponent<Renderer>().material.color == Rend.material.color)
+        {
+            print("Score!");
+        }
+        else
+        {
+            print("Wrong target :(");
+        }
+
+        /*
         if (materials.Length == 0)//If there are no materials nothing happens.
             return;
 
@@ -31,6 +41,6 @@ public class enemyController : MonoBehaviour {
         print(index);//used for debugging
 
         Rend.sharedMaterial = materials[index - 1]; //This sets the material color values inside the index
-        
+        */
     }
 }
