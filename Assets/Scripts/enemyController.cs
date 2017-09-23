@@ -31,6 +31,8 @@ public class enemyController : MonoBehaviour {
         print(index);//used for debugging
 
         Rend.sharedMaterial = materials[index - 1]; //This sets the material color values inside the index
-        
+		//adding a tag to rendered material
+		print(materials[index - 1].name);
+		Rend.tag = materials [index - 1].name;
     }
 }
