@@ -20,9 +20,12 @@ public class enemyController : MonoBehaviour {
     void OnTriggerEnter(Collider c) {
 
         // if the bullet is the same color, we've scored!
-        if (c.GetComponent<Renderer>().material.color == Rend.material.color)
+        if (c.GetComponent<Renderer>().material.color == Rend.material.color) // Compare Tags instead
         {
             print("Score!");
+
+            // Change cube to correct color
+
         }
         else
         {
