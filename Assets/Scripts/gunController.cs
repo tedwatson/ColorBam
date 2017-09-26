@@ -14,8 +14,6 @@ public class gunController : MonoBehaviour {
     {
         // instantiate a new bullet at the spawn point and give it the same color
         Instantiate(bullet, bulletSpawnPoint.transform.position, transform.rotation).GetComponent<Renderer>().material = rend.material;
-
-        //Pick a new random color (that isn't the one we already have)
         Material m = rend.material;
         while (m.color == rend.material.color)
         {
