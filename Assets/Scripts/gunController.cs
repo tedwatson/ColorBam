@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class gunController : MonoBehaviour {
 
+	public GameObject gunModel;
 	public GameObject bullet;
     public GameObject bulletSpawnPoint;
     public Material[] materials;
@@ -24,7 +25,7 @@ public class gunController : MonoBehaviour {
 
     private void Start()
     {
-        rend = GetComponent<Renderer>();
+        rend = gunModel.GetComponent<Renderer>();
 
         // Start with a random color
         rend.material = getRandomMaterial();
