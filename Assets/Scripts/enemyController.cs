@@ -12,12 +12,14 @@ public class enemyController : MonoBehaviour {
 
     private int index = 1;//Initialize at 1, otherwise you have to hit the object twice to change colors at first.
 
+	public Material greyMaterial;
 	public GameObject target;//reference for target object
 	public Text countText;//refernece for Score Text
 	private static int count; //Keeping the score static so that changes are reflected everywhere 
 	public AudioClip[] soundFiles;//reference to audio files to be used
 	public AudioSource soundSource;//reference to Audio Source
 	private List<string> doneColors = new List<string>(); //A list to store the colors that have been already matched
+	private Material originalMaterial;
     // Use this for initialization
     void Start()
     {
@@ -25,6 +27,10 @@ public class enemyController : MonoBehaviour {
         Rend.enabled = true;//Makes the rendered 3d object visable if enabled;
 		count = 0;//initializing the count to zero
 		SetCountText();//Setting the score in UI
+
+		// Save the enemy's original material, then set it to grey
+		originalMaterial = Rend.material;
+		Rend.material = greyMaterial;
     }
 
 
@@ -37,7 +43,7 @@ public class enemyController : MonoBehaviour {
 			if (!doneColors.Contains(bulletTag))
 			{
 				doneColors.Add (bulletTag);//Matched colors are added to the list of colors that are done
-				target.GetComponent<Renderer> ().material = c.GetComponent<Renderer> ().material;//Giving the target the same color as the color matched.
+				target.GetComponent<Renderer> ().material = originalMaterial; //c.GetComponent<Renderer> ().material;//Giving the target the same color as the color matched.
 				//poof sound
 				//soundSource.PlayOneShot(soundFiles[0]);
 				Debug.Log ("collided");
